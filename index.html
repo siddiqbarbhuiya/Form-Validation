@@ -31,12 +31,16 @@
         .formError{
             color: red;
         }
+        .form{
+                margin:50px 0px; padding:0px;
+    text-align:center;
+    align:center
+        }
         
     </style>
 </head>
 <body>
     <h1>Welcome</h1>
-    <center>
     <form action="" class="form" name="myForm" method="post" onsubmit="return validateForm()">
         <div class="divDesign" id="name1">
             First Name* <input type="text" name="fname" placeholder="Enter your Last Name" >
@@ -64,7 +68,6 @@
         </div>
         <button class="button" value="submit" name="">Submit</button>
     </form>
-    </center>
     <script>
         function clearErrors(){
             var errors = document.getElementsByClassName('formError');
