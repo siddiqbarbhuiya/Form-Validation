@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Vlidation</title>
+    <style>
+        body{
+            background-color: antiquewhite;
+            padding: 20px 20px;
+        }
+        .divDesign{
+            font-size: 20px;
+        }
+        .divDesign input{
+            width: 50%;
+            height: 20px;
+            padding: 5px 10px;
+            border: 1px solid skyblue;
+            margin: 5px;
+            border-radius: 4px;
+        }
+        .button{
+            width: 100px;
+            height: 40px;
+            font-size: 25px;
+            border-radius: 9px;
+            margin:  22px 20px;
+        }
+        .formError{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome</h1>
+    <form action="" class="form" name="myForm" method="post" onsubmit="return validateForm()">
+        <div class="divDesign" id="name1">
+            First Name* <input type="text" name="fname" placeholder="Enter your Last Name" >
+            <b><span class="formError"></span></b>
+        </div>
+        <div class="divDesign" id="name2">
+            Last Name* <input type="text" name="lname" placeholder="Enter your Last Name" >
+            <b><span class="formError"></span></b>
+        </div>
+        <div class="divDesign" id="email">
+            Email* <input type="email" name="femail" placeholder="Enter your Email" >
+            <b><span class="formError"></span></b>
+        </div>
+        <div class="divDesign" id="phone">
+            Phone* <input type="phone" name="fphone" placeholder="Enter Your contact number">
+            <b><span class="formError"></span></b>
+        </div>
+        <div class="divDesign" id="password">
+            Password* <input type="password" name="fpassword" placeholder="Enter your password">
+            <b><span class="formError"></span></b>
+        </div>
+        <div class="divDesign" id="cpassword">
+            Confirm Password* <input type="password" name="fcpassword" placeholder="Enter your password">
+            <b><span class="formError"></span></b>
+        </div>
+        <button class="button" value="submit" name="">Submit</button>
+    </form>
+    <script>
+        function clearErrors(){
+            var errors = document.getElementsByClassName('formError');
+            for(let item of errors){
+                item.innerHTML = "";
+            }
+        }
+
+        function setError(id, error){
+           var element = document.getElementById(id);
+            element.getElementsByClassName('formError')[0].innerHTML = error;
+        }
+
+        function validateForm(){
+            var returnVal = true;
+            clearErrors();
+
+            var name = document.forms['myForm']['fname'].value;
+            if(name.length < 5){
+                setError('name1', "name is too short");
+                returnVal = false;
+            }
+            if(name.length == 0){
+                setError('name1',"name cannot be zero" );
+                returnVal = false;
+            }
+
+            var name = document.forms['myForm']['lname'].value;
+            if(name.length < 5){
+                setError('name2', "name is too short");
+                returnVal = false;
+            }
+            if(name.length == 0){
+                setError('name2',"name cannot be zero" );
+                returnVal = false;
+            }
+
+            var email = document.forms['myForm']['femail'].value;
+            if(email.length > 20){
+                setError('email',"email is too large");
+                returnVal = false;
+            }
+            if(email.length == 0){
+                setError('email',"email cannot be zere");;
+                returnVal = false;
+            }
+
+            var phone = document.forms['myForm']['fphone'].value;
+            if(phone.length != 10){
+                setError('phone', "numbers should be of 10 digits");
+                returnVal = false;
+            }
+
+            var password = document.forms['myForm']['fpassword'].value;
+            if(password.length < 6){
+                setError('password', "password should be atleast 6 characters");
+                returnVal = false;
+            }
+
+            var cpassword = document.forms['myForm']['fcpassword'].value;
+            if(cpassword.length < 6){
+                setError('cpassword', "password should be atleast 6 characters");
+                returnVal = false;
+            }
+        
+            return returnVal;
+        }
+    </script>
+</body>
+</html>
